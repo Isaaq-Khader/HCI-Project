@@ -1,5 +1,13 @@
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
+document.addEventListener('click', getTouchXY, false);
+
+var num_taps = 0
+
+function getTouchXY(evt) {
+    num_taps++;
+    console.log(num_taps);
+}
 
 var xDown = null;
 var yDown = null;
