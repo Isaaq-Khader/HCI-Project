@@ -11,6 +11,16 @@
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 
+var input_happened = false;
+
+var num_taps = 0
+
+function getTouchXY(evt) {
+    num_taps++;
+    console.log(num_taps);
+    //reset num taps at the end of each user tracked event
+}
+
 var xDown = null;
 var yDown = null;
 
@@ -37,6 +47,9 @@ function handleTouchMove(evt) {
     var yDiff = yDown - yUp;
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+
+        input_happened = true;
+
         if ( xDiff > 0 ) {
             /* right swipe */
             console.log(xDiff);
@@ -45,6 +58,9 @@ function handleTouchMove(evt) {
             console.log(xDiff);
         }
     } else {
+
+        input_happened = true;
+
         if ( yDiff > 0 ) {
             /* down swipe */
             console.log(yDiff);
@@ -157,14 +173,22 @@ async function run_test()
     var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
     for(let i = 0; i < randomArr.length - 1; i++)
     {
-
+        input_happened = false;
         runVibration(randomArr[i]);
-        await new Promise(r => setTimeout(r, 10000));
+        console.log("after vibration");
+//        await new Promise(r => setTimeout(r, 10000));
+        console.log("after waiting");
+        while(true){
+            console.log("inside loop");
+            if (input_happened) {break;}
+            await new Promise(r => setTimeout(r, 1000));
+        }
         //const input = prompt();
 
         // accept user input
         // store user input
     }
+    console.log("test finished");
 }
 
 ///* jshint ignore:start */

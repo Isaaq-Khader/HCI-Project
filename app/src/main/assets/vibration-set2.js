@@ -1,6 +1,14 @@
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 
+var num_taps = 0
+
+function getTouchXY(evt) {
+    num_taps++;
+    console.log(num_taps);
+    //reset num taps at the end of each user tracked event
+}
+
 var xDown = null;
 var yDown = null;
 
