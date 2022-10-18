@@ -8,6 +8,7 @@ navigator.vibrate([150, 30, 1200, 500, 150, 30, 1200]);
 
 function love2() {
   navigator.vibrate([50, 200, 230, 300, 50, 200, 230, 300, 50, 200, 230]);
+
 }
 
 function haha2() {
