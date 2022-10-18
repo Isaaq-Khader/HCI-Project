@@ -9,41 +9,31 @@
   });
 
 function like() {
-  // Vibrate for 500ms
-  navigator.vibrate([150, 100, 100]);
+    navigator.vibrate([150, 100, 100]);
 }
 
 function angry() {
-// For a single value you can pass in a Number rather than an Array
-navigator.vibrate(1000);
+    navigator.vibrate(1000);
 }
 
 function love() {
-  // For a single value you can pass in a Number rather than an Array
-  navigator.vibrate([50, 200, 80, 700, 50, 200, 80, 700, 50, 200, 80]);
+    navigator.vibrate([50, 200, 80, 700, 50, 200, 80, 700, 50, 200, 80]);
 }
 
 function haha() {
-// For a single value you can pass in a Number rather than an Array
-navigator.vibrate([100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100]);
+    navigator.vibrate([100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100]);
 }
 
 function yay() {
-// For a single value you can pass in a Number rather than an Array
-navigator.vibrate([200, 120, 80, 80, 500]);
+    navigator.vibrate([200, 120, 80, 80, 500]);
 }
 
 function sad() {
-  // Values at even indices (0, 2, 4, ...) specify vibrations, while the odd
-  // indices specify pauses.
-  // Vibrate for 500ms 6 times, pausing for 250ms in between each one.
-  navigator.vibrate([200, 400, 200, 400, 200, 400, 1000]);
+    navigator.vibrate([200, 400, 200, 400, 200, 400, 1000]);
 }
 
 function stopVibrations() {
-  // You can also stop an ongoing vibration pattern by specifying a vibration
-  // length of zero.
-  navigator.vibrate(0);
+    navigator.vibrate(0);
 }
 
 /* jshint ignore:start */
