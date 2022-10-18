@@ -7,6 +7,7 @@ var num_taps = 0
 function getTouchXY(evt) {
     num_taps++;
     console.log(num_taps);
+    //reset num taps at the end of each user tracked event
 }
 
 var xDown = null;
@@ -35,19 +36,23 @@ function handleTouchMove(evt) {
     var yDiff = yDown - yUp;
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-        if ( xDiff > 0 ) {
+        if ( xDiff > 10) {
             /* right swipe */
+            console.log("positive X: ");
             console.log(xDiff);
-        } else {
+        } else if (xDiff < -10){
             /* left swipe */
+            console.log("negative X: ");
             console.log(xDiff);
         }
     } else {
-        if ( yDiff > 0 ) {
+        if ( yDiff > 10 ) {
             /* down swipe */
+            console.log("positive Y: ");
             console.log(yDiff);
-        } else {
+        } else if (yDiff < -10){
             /* up swipe */
+            console.log("negative Y: ");
             console.log(yDiff);
         }
     }
