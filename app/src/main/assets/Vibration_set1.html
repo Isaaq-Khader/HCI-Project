@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Sample illustrating the use of Vibration API.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Vibration API Set 1</title>
+    <script async="" src="./Vibration_API_Sample_files/analytics.js"></script><script>
+      // Add a global error event listener early on in the page load, to help ensure that browsers
+      // which don't support specific functionality still end up displaying a meaningful message.
+      window.addEventListener('error', function(error) {
+        if (ChromeSamples && ChromeSamples.setStatus) {
+          console.error(error);
+          ChromeSamples.setStatus(error.message + ' (Your browser may not support this feature.)');
+          error.preventDefault();
+        }
+      });
+    </script>
+    
+    
+    
+    
+    <link rel="icon" href="https://googlechrome.github.io/samples/images/favicon.ico">
+    
+    <link rel="stylesheet" href="./Vibration_API_Sample_files/main.css">
+    
+    
+  </head>
+
+  <body>
+    
+    <h1>Vibration API Sample</h1>
+    <p class="availability">
+      Available in <a target="_blank" href="https://www.chromestatus.com/feature/5698768766763008">Chrome 32+</a> |
+      <a target="_blank" href="https://github.com/googlechrome/samples/blob/gh-pages/vibration/">View on GitHub</a> |
+      <a target="_blank" href="https://www.chromestatus.com/samples">Browse Samples</a>
+    </p>
+    <p>You can control the vibration capability of your device using the Vibration API. Chrome only supports this feature on Android devices.</p>
+
+
+  
+    
+      <script>function like() {
+  // Vibrate for 500ms
+  navigator.vibrate([150, 100, 100]);
+}
+</script>
+    
+  
+
+  
+    <h3>Like</h3>
+  
+
+  
+    <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">like</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Vibrate for 500ms</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">([</span><span class="mi">500</span><span class="p">]);</span>
+<span class="p">}</span></code></pre></figure>
+  
+
+
+<div><button onclick="like()">Vibrate</button></div>
+
+
+  
+    
+<script>function angry() {
+// For a single value you can pass in a Number rather than an Array
+navigator.vibrate(1000);
+}
+</script>
+
+
+
+
+<h3>Angry</h3>
+
+
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">angry</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// For a single value you can pass in a Number rather than an Array</span>
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+
+
+<div><button onclick="angry()">Vibrate</button></div>
+
+
+  
+    
+      <script>function love() {
+  // For a single value you can pass in a Number rather than an Array
+  navigator.vibrate([50, 200, 80, 700, 50, 200, 80, 700, 50, 200, 80]);
+}
+</script>
+    
+  
+
+  
+    <h3>Love</h3>
+  
+
+  
+    <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">angry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// For a single value you can pass in a Number rather than an Array</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+  
+
+
+<div><button onclick="love()">Vibrate</button></div>
+
+
+  
+    
+<script>function haha() {
+// For a single value you can pass in a Number rather than an Array
+navigator.vibrate([100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100]);
+}
+</script>
+
+
+
+
+<h3>Haha</h3>
+
+
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">angry</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// For a single value you can pass in a Number rather than an Array</span>
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+
+
+<div><button onclick="haha()">Vibrate</button></div>
+
+
+  
+    
+<script>function yay() {
+// For a single value you can pass in a Number rather than an Array
+navigator.vibrate([200, 120, 80, 80, 500]);
+}
+</script>
+
+
+
+
+<h3>Yay</h3>
+
+
+
+<figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">angry</span><span class="p">()</span> <span class="p">{</span>
+<span class="c1">// For a single value you can pass in a Number rather than an Array</span>
+<span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+
+
+
+<div><button onclick="yay()">Vibrate</button></div>
+
+
+  
+    
+      <script>function startPattern() {
+  // Values at even indices (0, 2, 4, ...) specify vibrations, while the odd
+  // indices specify pauses.
+  // Vibrate for 500ms 6 times, pausing for 250ms in between each one.
+  navigator.vibrate([200, 400, 200, 400, 200, 400, 1000]);
+}
+</script>
+    
+  
+
+  
+    <h3>Sad 1</h3>
+  
+
+  
+    <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">startPattern</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Sad: wa wa wa waaaa </span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">([</span><span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">500</span><span class="p">]);</span>
+<span class="p">}</span></code></pre></figure>
+  
+
+
+<div><button onclick="startPattern()">Play pattern</button></div>
+
+
+  
+    
+      <script>function stopVibrations() {
+  // You can also stop an ongoing vibration pattern by specifying a vibration
+  // length of zero.
+  navigator.vibrate(0);
+}
+</script>
+    
+  
+
+  
+    <h3>JavaScript Snippet</h3>
+  
+
+  
+    <figure class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">stopVibrations</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// You can also stop an ongoing vibration pattern by specifying a vibration</span>
+  <span class="c1">// length of zero.</span>
+  <span class="nb">navigator</span><span class="p">.</span><span class="nx">vibrate</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure>
+  
+
+
+<div><button onclick="stopVibrations()">Stop vibrations</button></div>
+
+    
+    <script>
+      /* jshint ignore:start */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-53563471-1', 'auto');
+      ga('send', 'pageview');
+      /* jshint ignore:end */
+    </script>
+  
+
+</body></html>
