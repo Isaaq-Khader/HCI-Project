@@ -13,12 +13,15 @@ document.addEventListener('touchmove', handleTouchMove, false);
 document.addEventListener('click', getTouchXY, false);
 
 var input_happened = false;
-
-var num_taps = 0
+var num_taps = 0;
+var left_swipe_happened = false;
+var right_swipe_happened = false;
+var up_swipe_happened = false;
+var down_swipe_happened = false;
 
 function getTouchXY(evt) {
     num_taps++;
-    console.log(num_taps);
+    console.log('Taps: ' + num_taps);
     input_happened = true;
     //reset num taps at the end of each user tracked event
 }
@@ -53,22 +56,26 @@ function handleTouchMove(evt) {
         input_happened = true;
 
         if ( xDiff > 0 ) {
-            /* right swipe */
-            console.log(xDiff);
+            /* right swipe (we inverted) */
+            left_swipe_happened = true;
+            console.log('Left Swipe: ' + xDiff);
         } else {
-            /* left swipe */
-            console.log(xDiff);
+            /* left swipe (we inverted) */
+            right_swipe_happened = true;
+            console.log('Right Swipe: ' + xDiff);
         }
     } else {
 
         input_happened = true;
 
         if ( yDiff > 0 ) {
-            /* down swipe */
-            console.log(yDiff);
+            /* down swipe (we inverted) */
+            up_swipe_happened = true;
+            console.log('Up Swipe: ' + yDiff);
         } else {
-            /* up swipe */
-            console.log(yDiff);
+            /* up swipe (we inverted) */
+            down_swipe_happened = true;
+            console.log('Down Swipe: ' + yDiff);
         }
     }
     /* reset values */
@@ -94,7 +101,6 @@ function love() {
 function haha() {
     navigator.vibrate([100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100, 50, 100]);
     console.log("playing heheheha");
-
 }
 
 function yay() {
@@ -128,7 +134,6 @@ function shuffle(array) {
         array[j] = temp;
 
     }
-
     return array;
 }
 
@@ -160,37 +165,67 @@ function runVibration(i)
     }
 }
 
-// sourced from
-// https://www.sitepoint.com/delay-sleep-pause-wait/
-function sleep(milliseconds) {
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < milliseconds);
-}
-
 async function run_test()
 {
     var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
     for(let i = 0; i < randomArr.length - 1; i++)
     {
-        input_happened = false;
-        runVibration(randomArr[i]);
-        console.log("after vibration");
-//        await new Promise(r => setTimeout(r, 10000));
-        console.log("after waiting");
-        while(true){
-            console.log("inside loop");
-            if (input_happened) {break;}
-            await new Promise(r => setTimeout(r, 1000));
-        }
-        //const input = prompt();
+        console.log("Trial: " + i);
 
-        // accept user input
-        // store user input
+        // Randomize vibration order, then wait for vibration
+        runVibration(randomArr[i]);
+        await new Promise(r => setTimeout(r, 2000));
+
+        // Reset events
+        num_taps = 0;
+        left_swipe_happened = false;
+        right_swipe_happened = false;
+        up_swipe_happened = false;
+        down_swipe_happened = false;
+
+        // Wait for user to give emoji
+        input_happened = false;
+        while(true){
+            //console.log("inside loop");
+            if (input_happened) {break;}
+            await new Promise(r => setTimeout(r, 500));
+        }
+        await new Promise(r => setTimeout(r, 2500));
+
+        // Interpret user's sent emoji
+        if (num_taps > 0) {
+            if (num_taps == 1) {
+                console.log("Like Emoji Sent");
+            }
+            else if (num_taps == 2) {
+                console.log("Love Emoji Sent");
+            }
+            else {
+                console.log("Haha Emoji Sent");
+            }
+        }
+        else if (left_swipe_happened) {
+            console.log("Sad Emoji Sent");
+        }
+        else if (up_swipe_happened) {
+            console.log("Yay Emoji Sent");
+        }
+        else if (down_swipe_happened) {
+            console.log("Angry Emoji Sent");
+        }
+        else {
+            console.log("Couldn't Define Emoji");
+        }
+
+        // Have user tap one more time for the next vibration
+        input_happened = false;
+        while(true){
+            //console.log("inside loop");
+             if (input_happened) {break;}
+             await new Promise(r => setTimeout(r, 500));
+        }
     }
-    console.log("test finished");
+    console.log("Test Finished!");
 }
 
 ///* jshint ignore:start */
