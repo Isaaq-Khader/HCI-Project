@@ -197,15 +197,15 @@ async function run_test()
             if (num_taps == 1) {
                 console.log("Like Emoji Sent");
             }
-            else {
+            else if (num_taps == 2) {
                 console.log("Love Emoji Sent");
+            }
+            else {
+                console.log("Haha Emoji Sent");
             }
         }
         else if (left_swipe_happened) {
             console.log("Sad Emoji Sent");
-        }
-        else if (right_swipe_happened) {
-            console.log("Haha Emoji Sent");
         }
         else if (up_swipe_happened) {
             console.log("Yay Emoji Sent");
