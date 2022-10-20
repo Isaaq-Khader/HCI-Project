@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setAllowContentAccess(true);
         webView.getSettings().setAllowFileAccess(true);
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/Vibration_set1.html");
 
     }
 }

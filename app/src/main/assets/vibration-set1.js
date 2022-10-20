@@ -19,19 +19,26 @@ var right_swipe_happened = false;
 var up_swipe_happened = false;
 var down_swipe_happened = false;
 
-function getTouchXY(evt) {
-    num_taps++;
-    console.log('Taps: ' + num_taps);
-    input_happened = true;
-    //reset num taps at the end of each user tracked event
-}
+
 
 var xDown = null;
 var yDown = null;
+var xLoc = null;
+var yLoc = null;
 
 function getTouches(evt) {
   return evt.touches ||             // browser API
          evt.originalEvent.touches; // jQuery
+}
+
+function getTouchXY(evt) {
+    num_taps++;
+    console.log('Taps: ' + num_taps);
+    input_happened = true;
+
+    console.log(evt.clientX);
+    console.log(evt.clientY);
+    //reset num taps at the end of each user tracked event
 }
 
 function handleTouchStart(evt) {
