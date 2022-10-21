@@ -20,7 +20,6 @@ var up_swipe_happened = false;
 var down_swipe_happened = false;
 
 
-
 var xDown = null;
 var yDown = null;
 
@@ -57,11 +56,11 @@ function handleTouchMove(evt) {
 
         input_happened = true;
 
-        if ( xDiff > 0 ) {
+        if ( xDiff > 20 ) {
             /* right swipe (we inverted) */
             left_swipe_happened = true;
             console.log('Left Swipe: ' + xDiff);
-        } else {
+        } else if (xDiff < -20){
             /* left swipe (we inverted) */
             right_swipe_happened = true;
             console.log('Right Swipe: ' + xDiff);
@@ -70,11 +69,11 @@ function handleTouchMove(evt) {
 
         input_happened = true;
 
-        if ( yDiff > 0 ) {
+        if ( yDiff > 20 ) {
             /* down swipe (we inverted) */
             up_swipe_happened = true;
             console.log('Up Swipe: ' + yDiff);
-        } else {
+        } else if (yDiff < -20){
             /* up swipe (we inverted) */
             down_swipe_happened = true;
             console.log('Down Swipe: ' + yDiff);
@@ -85,29 +84,34 @@ function handleTouchMove(evt) {
     yDown = null;
 };
 
-function like2() {
+function like() {
   navigator.vibrate([200, 100, 300]);
+  console.log("playing like");
 }
 
-function angry2() {
-navigator.vibrate([150, 30, 1200, 500, 150, 30, 1200]);
+function angry() {
+  navigator.vibrate([150, 30, 1200, 500, 150, 30, 1200]);
+  console.log("playing angry");
 }
 
-function love2() {
+function love() {
   navigator.vibrate([50, 200, 230, 300, 50, 200, 230, 300, 50, 200, 230]);
-
+  console.log("playing love");
 }
 
-function haha2() {
+function haha() {
   navigator.vibrate([150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150, 50, 150]);
+  console.log("playing haha");
 }
 
-function yay2() {
+function yay() {
   navigator.vibrate([150, 50, 150, 50, 150, 50, 800]);
+  console.log("playing yay");
 }
 
-function sad2() {
+function sad() {
   navigator.vibrate([200, 400, 200, 400, 200, 400, 70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70,10,70]);
+  console.log("playing sad");
 }
 
 // sourced from
@@ -134,27 +138,27 @@ function runVibration(i)
 {
     if(i == 0)
     {
-        like2();
+        like();
     }
     if(i == 1)
     {
-        love2();
+        love();
     }
     if(i == 2)
     {
-        angry2();
+        angry();
     }
     if(i == 3)
     {
-        haha2();
+        haha();
     }
     if(i == 4)
     {
-        yay2();
+        yay();
     }
     if(i == 5)
     {
-        sad2();
+        sad();
     }
 }
 
@@ -219,6 +223,28 @@ async function run_test()
         }
     }
     console.log("Test Finished!");
+}
+
+async function impressions()
+{
+    var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
+    for(let i = 0; i < randomArr.length - 1; i++)
+    {
+        console.log("Trial: " + i);
+
+        // Randomize vibration order, then wait for vibration
+        runVibration(randomArr[i]);
+        await new Promise(r => setTimeout(r, 2000));
+
+        // Have user tap one more time for the next vibration
+        input_happened = false;
+        while(true){
+            //console.log("inside loop");
+             if (input_happened) {break;}
+             await new Promise(r => setTimeout(r, 500));
+        }
+    }
+    console.log("Pre-Study Finished!");
 }
 
 ///* jshint ignore:start */

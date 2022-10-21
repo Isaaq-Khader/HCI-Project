@@ -20,11 +20,11 @@ var up_swipe_happened = false;
 var down_swipe_happened = false;
 
 
-
 var xDown = null;
 var yDown = null;
 var xLoc = null;
 var yLoc = null;
+var yLocs = [];
 
 function getTouches(evt) {
   return evt.touches ||             // browser API
@@ -36,8 +36,9 @@ function getTouchXY(evt) {
     console.log('Taps: ' + num_taps);
     input_happened = true;
 
-    console.log(evt.clientX);
-    console.log(evt.clientY);
+    xLoc = evt.clientX;
+    yLoc = evt.clientY;
+    yLocs.push(yLoc);
     //reset num taps at the end of each user tracked event
 }
 
@@ -62,11 +63,11 @@ function handleTouchMove(evt) {
 
         input_happened = true;
 
-        if ( xDiff > 0 ) {
+        if ( xDiff > 20 ) {
             /* right swipe (we inverted) */
             left_swipe_happened = true;
             console.log('Left Swipe: ' + xDiff);
-        } else {
+        } else if (xDiff < -20){
             /* left swipe (we inverted) */
             right_swipe_happened = true;
             console.log('Right Swipe: ' + xDiff);
@@ -75,11 +76,11 @@ function handleTouchMove(evt) {
 
         input_happened = true;
 
-        if ( yDiff > 0 ) {
+        if ( yDiff > 20 ) {
             /* down swipe (we inverted) */
             up_swipe_happened = true;
             console.log('Up Swipe: ' + yDiff);
-        } else {
+        } else if (yDiff < -20){
             /* up swipe (we inverted) */
             down_swipe_happened = true;
             console.log('Down Swipe: ' + yDiff);
@@ -174,9 +175,11 @@ function runVibration(i)
 
 async function run_test()
 {
+
     var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
     for(let i = 0; i < randomArr.length - 1; i++)
     {
+
         console.log("Trial: " + i);
 
         // Randomize vibration order, then wait for vibration
@@ -189,6 +192,7 @@ async function run_test()
         right_swipe_happened = false;
         up_swipe_happened = false;
         down_swipe_happened = false;
+        yLocs = [];
 
         // Wait for user to give emoji
         input_happened = false;
@@ -200,25 +204,29 @@ async function run_test()
         await new Promise(r => setTimeout(r, 2500));
 
         // Interpret user's sent emoji
+        console.log(yLocs);
         if (num_taps > 0) {
+
             if (num_taps == 1) {
                 console.log("Like Emoji Sent");
             }
             else if (num_taps == 2) {
-                console.log("Love Emoji Sent");
+                if (yLocs[0] < 270 && yLocs[1] < 270){
+                    console.log("Yay Emoji Sent");
+                }
+                else if (yLocs[0] >= 270 && yLocs[1] >= 270){
+                    console.log("Sad Emoji Sent");
+                }
+                else if (yLocs[0] > 270 && yLocs[1] < 270) {
+                    console.log("Love Emoji Sent");
+                }
+                else if (yLocs[0] < 270 && yLocs[1] >= 270){
+                    console.log("Angry Emoji Sent");
+                }
             }
             else {
                 console.log("Haha Emoji Sent");
             }
-        }
-        else if (left_swipe_happened) {
-            console.log("Sad Emoji Sent");
-        }
-        else if (up_swipe_happened) {
-            console.log("Yay Emoji Sent");
-        }
-        else if (down_swipe_happened) {
-            console.log("Angry Emoji Sent");
         }
         else {
             console.log("Couldn't Define Emoji");
@@ -231,9 +239,33 @@ async function run_test()
              if (input_happened) {break;}
              await new Promise(r => setTimeout(r, 500));
         }
+        yLocs = [];
     }
     console.log("Test Finished!");
 }
+
+async function impressions()
+{
+    var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
+    for(let i = 0; i < randomArr.length - 1; i++)
+    {
+        console.log("Trial: " + i);
+
+        // Randomize vibration order, then wait for vibration
+        runVibration(randomArr[i]);
+        await new Promise(r => setTimeout(r, 2000));
+
+        // Have user tap one more time for the next vibration
+        input_happened = false;
+        while(true){
+            //console.log("inside loop");
+             if (input_happened) {break;}
+             await new Promise(r => setTimeout(r, 500));
+        }
+    }
+    console.log("Pre-Study Finished!");
+}
+
 
 ///* jshint ignore:start */
 //(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
