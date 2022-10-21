@@ -177,7 +177,7 @@ async function run_test()
 {
 
     var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
-    for(let i = 0; i < randomArr.length - 1; i++)
+    for(let i = 0; i < randomArr.length; i++)
     {
 
         console.log("Trial: " + i);
@@ -247,7 +247,7 @@ async function run_test()
 async function impressions()
 {
     var randomArr = shuffle([0, 1, 2, 3, 4, 5]);
-    for(let i = 0; i < randomArr.length - 1; i++)
+    for(let i = 0; i < randomArr.length; i++)
     {
         console.log("Trial: " + i);
 
